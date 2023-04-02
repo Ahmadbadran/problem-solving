@@ -44,3 +44,101 @@ function sumArray(arr) {
   const reversedString = reverseString(myString);
   console.log(reversedString); // Output: "!dlrow ,olleH"
   
+
+  // data structure excercises
+
+  //exc 1 
+  class MinStack {
+    constructor() {
+      this.stack = [];
+      this.minStack = [];
+    }
+  
+    push(value) {
+      this.stack.push(value);
+      if (this.minStack.length === 0 || value <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(value);
+      }
+    }
+  
+    pop() {
+      const value = this.stack.pop();
+      if (value === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+      }
+      return value;
+    }
+  
+    getMin() {
+      if (this.minStack.length === 0) {
+        throw new Error("Stack is empty");
+      }
+      return this.minStack[this.minStack.length - 1];
+    }
+  }
+
+  
+
+  //exc 2
+  function reverseQueue(queue) {
+    const stack = [];
+  
+    // Pop elements from the queue and push them onto the stack
+    while (queue.length > 0) {
+      stack.push(queue.shift());
+    }
+  
+    // Pop elements from the stack and push them back into the queue
+    while (stack.length > 0) {
+      queue.push(stack.pop());
+    }
+  
+    return queue;
+  }
+
+  //exc 3
+  class Queue {
+    constructor() {
+      this.s1 = [];
+      this.s2 = [];
+    }
+  
+    enqueue(value) {
+      this.s1.push(value);
+    }
+  
+    dequeue() {
+      if (this.s2.length === 0) {
+        // Transfer all elements from s1 to s2 in reversed order
+        while (this.s1.length > 0) {
+          this.s2.push(this.s1.pop());
+        }
+      }
+  
+      if (this.s2.length === 0) {
+        throw new Error("Queue is empty");
+      }
+  
+      return this.s2.pop();
+    }
+  
+    peek() {
+      if (this.s2.length === 0) {
+        // Transfer all elements from s1 to s2 in reversed order
+        while (this.s1.length > 0) {
+          this.s2.push(this.s1.pop());
+        }
+      }
+  
+      if (this.s2.length === 0) {
+        throw new Error("Queue is empty");
+      }
+  
+      return this.s2[this.s2.length - 1];
+    }
+  
+    isEmpty() {
+      return this.s1.length === 0 && this.s2.length === 0;
+    }
+  }
+  
