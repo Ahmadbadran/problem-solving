@@ -141,4 +141,64 @@ function sumArray(arr) {
       return this.s1.length === 0 && this.s2.length === 0;
     }
   }
+  // linked list
+
+  //Exc1
+  class ListNode {
+    constructor(val, next = null) {
+      this.val = val;
+      this.next = next;
+    }
+  }
+  
+  function removeMiddleNode(head) {
+    let slow = head;
+    let fast = head;
+  
+    while (fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+  
+    // Remove the middle node
+    let prev = null;
+    let curr = head;
+    while (curr !== slow) {
+      prev = curr;
+      curr = curr.next;
+    }
+  
+    if (prev) {
+      prev.next = slow.next;
+    } else {
+      head = head.next;
+    }
+  
+    return head;
+  }
+
+  //Exc2
+  class ListNode {
+    constructor(val, next = null) {
+      this.val = val;
+      this.next = next;
+    }
+  }
+  
+  function reverseLinkedList(head) {
+    let prev = null;
+    let curr = head;
+  
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+  
+    return prev;
+  }
+  
+  
+  
   
